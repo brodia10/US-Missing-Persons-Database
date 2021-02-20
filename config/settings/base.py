@@ -17,6 +17,8 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+PROJECT_DIR = "us_missing_persons"
+
 DEBUG = True
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +27,6 @@ DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -80,7 +81,7 @@ WSGI_APPLICATION = "config.settings.wsgi.application"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -97,14 +98,14 @@ TEMPLATES = [
 # ------------------------------------------------------------------------------
 # (CSS, JavaScript, Images)
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / PROJECT_DIR / "staticfiles"
 STATIC_URL = "/static/"
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+STATICFILES_DIRS = (BASE_DIR / PROJECT_DIR / "static",)
 
 # Media #
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / PROJECT_DIR / "media"
 MEDIA_URL = "/media/"
 
 # Password validation
