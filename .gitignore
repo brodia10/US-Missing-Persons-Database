@@ -8,8 +8,5 @@ venv
 **/*.pyc
 **/*.sqlite3
 **/*.sqlite3-journal
-staticfiles
-static
-media
 .env
 .pyc
