@@ -7,32 +7,31 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='NationalParks',
+            name="NationalParks",
             fields=[
-                ('id', models.CharField(max_length=50, primary_key=True, serialize=False)),
-                ('area_acres', models.CharField(blank=True, max_length=50, null=True)),
-                ('area_square_km', models.CharField(blank=True, max_length=50, null=True)),
-                ('coordinates_latitude', models.CharField(blank=True, max_length=50, null=True)),
-                ('coordinates_longitude', models.CharField(blank=True, max_length=50, null=True)),
-                ('date_established', models.CharField(max_length=50)),
-                ('description', models.CharField(max_length=500)),
-                ('image_url', models.CharField(max_length=50)),
-                ('image_attribution', models.CharField(max_length=150)),
-                ('image_attribution_url', models.CharField(max_length=150)),
-                ('nps_link', models.CharField(max_length=150)),
-                ('states_title', models.CharField(max_length=150)),
-                ('title', models.CharField(max_length=150)),
-                ('visitors', models.CharField(max_length=50)),
-                ('world_heritage_site', models.BooleanField(default=True)),
+                ("id", models.CharField(max_length=50, primary_key=True, serialize=False)),
+                ("area_acres", models.CharField(blank=True, max_length=50, null=True)),
+                ("area_square_km", models.CharField(blank=True, max_length=50, null=True)),
+                ("coordinates_latitude", models.CharField(blank=True, max_length=50, null=True)),
+                ("coordinates_longitude", models.CharField(blank=True, max_length=50, null=True)),
+                ("date_established", models.CharField(max_length=50)),
+                ("description", models.CharField(max_length=500)),
+                ("image_url", models.CharField(max_length=50)),
+                ("image_attribution", models.CharField(max_length=150)),
+                ("image_attribution_url", models.CharField(max_length=150)),
+                ("nps_link", models.CharField(max_length=150)),
+                ("states_title", models.CharField(max_length=150)),
+                ("title", models.CharField(max_length=150)),
+                ("visitors", models.CharField(max_length=50)),
+                ("world_heritage_site", models.BooleanField(default=True)),
             ],
             options={
-                'verbose_name': 'National Parks',
-                'verbose_name_plural': 'National Parks',
+                "verbose_name": "National Parks",
+                "verbose_name_plural": "National Parks",
             },
         ),
     ]
