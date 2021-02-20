@@ -1,8 +1,8 @@
 # Django
-# SETTINGS_MODULE = development
+SETTINGS_MODULE = local
 
 serve:
-	python manage.py runserver
+	python manage.py runserver --SETTINGS_MODULE=${SETTINGS_MODULE}
 
 migrations:
 	python manage.py makemigrations

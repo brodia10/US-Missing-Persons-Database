@@ -26,7 +26,7 @@ class NationalParks(models.Model):
 
     class Meta:
         verbose_name = "National Parks"
-        verbose_name_plural = "National Parkss"
+        verbose_name_plural = "National Parks"
 
     def __str__(self):
         return self.title
