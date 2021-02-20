@@ -20,10 +20,9 @@ jobs:
           architecture: "x64"
       - name: Install Dependencies
         run: pip install -r requirements.txt
-        working directory: ./us_missing_persons
       - name: Run Black Code Formatting
-        run: black --config pyproject.toml -v --check .
-        working directory: ./us_missing_persons
+        run: black --config ../pyproject.toml -v --check .
+        working-directory: ./us_missing_persons
       - name: Run Flake8 Linter
         run: flake8 -v .
-        working directory: ./us_missing_persons
+        working-directory: ./us_missing_persons
