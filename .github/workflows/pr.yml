@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Black Code Formatting
-        run: black --config pyproject.toml -v --check .
+        run: black --config ../pyproject.toml -v --check .
         working-directory: ./us_missing_persons
       - name: Run Flake8 Linter
         run: flake8 -v .
