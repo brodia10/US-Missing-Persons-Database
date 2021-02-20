@@ -7,6 +7,7 @@ class NationalParks(models.Model):
     This is the National Parks model.
     """
 
+    id = models.CharField(max_length=50, primary_key=True)
     area_acres = models.CharField(null=True, blank=True, max_length=50)
     area_square_km = models.CharField(null=True, blank=True, max_length=50)
     coordinates_latitude = models.CharField(null=True, blank=True, max_length=50)
