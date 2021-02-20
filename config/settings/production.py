@@ -1,15 +1,15 @@
 from .base import *
 from decouple import config
 
+
 DEBUG = False
+
+ALLOWED_HOSTS = [
+    "us-missing-persons-production.herokuapp.com",
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-ALLOWED_HOSTS += [
-    "us-missing-persons-production.herokuapp.com",
-    ".herokuapp.com",
-]
 
 DATABASES = {
     "default": {
@@ -21,7 +21,6 @@ DATABASES = {
         "PORT": config("DB_PORT"),
     }
 }
-
 
 # This ensures that Django will be able to detect a secure connection
 # properly on Heroku.
