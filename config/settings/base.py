@@ -50,7 +50,7 @@ THIRD_PARTY_APPS = (
     "multiselectfield",
     "storages",
     "letsencrypt",
-    "auditlog",    
+    "auditlog",
 )
 
 # Apps specific for this project go here.
