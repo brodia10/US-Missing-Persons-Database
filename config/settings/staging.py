@@ -6,9 +6,8 @@ DEBUG = False
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-ALLOWED_HOSTS += [
-    "us-missing-persons-staging.herokuapp.com"
-    ".herokuapp.com",
+ALLOWED_HOSTS = [
+    "us-missing-persons-staging.herokuapp.com",
 ]
 
 DATABASES = {
