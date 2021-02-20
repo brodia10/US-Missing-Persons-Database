@@ -9,12 +9,13 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-from decouple import config
-from pathlib import Path
 import os
+from pathlib import Path
+
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 DEBUG = True
 
@@ -24,23 +25,24 @@ DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
 
-
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
+# APP CONFIGURATION
+# ------------------------------------------------------------------------------
 
-# Application definition
-
-INSTALLED_APPS = [
-    "django.contrib.humanize",
-    "jazzmin",
-    "django.contrib.admin",
-    "django.contrib.admindocs",
+DJANGO_APPS = (
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "national_parks.apps.NationalParksConfig",
+    "django.contrib.humanize",
+    "jazzmin",
+    "django.contrib.admin",
+    "django.contrib.admindocs",
+)
+
+THIRD_PARTY_APPS = (
     "import_export",
     "mail_templated",
     "phonenumber_field",
@@ -48,8 +50,15 @@ INSTALLED_APPS = [
     "multiselectfield",
     "storages",
     "letsencrypt",
-    "auditlog",
-]
+    "auditlog",    
+)
+
+# Apps specific for this project go here.
+LOCAL_APPS = ("us_missing_persons.national_parks", "us_missing_persons.missing_persons")
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 
 MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -64,7 +73,9 @@ MIDDLEWARE = [
     "auditlog.middleware.AuditlogMiddleware",
 ]
 
-ROOT_URLCONF = "us_missing_persons.urls"
+ROOT_URLCONF = "config.settings.urls"
+
+WSGI_APPLICATION = "config.settings.wsgi.application"
 
 TEMPLATES = [
     {
@@ -82,18 +93,22 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "us_missing_persons.wsgi.application"
+# Static file Settings
+# ------------------------------------------------------------------------------
+# (CSS, JavaScript, Images)
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = "/static/"
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+# Media #
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
 
 # Password validation
+# ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -111,8 +126,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
+# ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
@@ -125,33 +140,21 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Email Configs #
+# Email Settings
+# ------------------------------------------------------------------------------
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = config('GMAIL_USER', '')
-# EMAIL_HOST_PASSWORD = config('GMAIL_PASSWORD', '')
-# EMAIL_USE_TLS = True
-
-# Email Configs #
-
-EMAIL_HOST = "smtp.office365.com"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = config("FIDELIS_USER", "")
-EMAIL_HOST_PASSWORD = config("FIDELIS_PASSWORD", "")
+EMAIL_HOST_USER = config("GMAIL_USER", "")
+EMAIL_HOST_PASSWORD = config("GMAIL_PASSWORD", "")
 EMAIL_USE_TLS = True
 
 
-# Ckeditor Configs #
-CKEDITOR_CONFIGS = {
-    "default": {
-        "skin": "moono",
-        "toolbar": "basic",
-        "enterMode": 2,
-    },
-}
+# Django-Jazzmin Admin Theme Configs
+# ------------------------------------------------------------------------------
 
-# Django-Jazzmin Admin Theme Configs #
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "US Missing Persons Database",
@@ -311,23 +314,16 @@ JAZZMIN_UI_TWEAKS = {
     },
 }
 
+# Ckeditor Configs
+# ------------------------------------------------------------------------------
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "skin": "moono",
+        "toolbar": "basic",
+        "enterMode": 2,
+    },
+}
+
 # This is the path CKEDITOR will look for media files when uploading via Admin Panel text editor.
-CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, "media")
-# TO DO - Create a media directory and add it here ^
-
-# Django Admin Theme Configuration
-X_FRAME_OPTIONS = "SAMEORIGIN"
-
-
-## Static file Settings ##
-##########################
-# (CSS, JavaScript, Images)
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_URL = "/static/"
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-
-# Media #
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+CKEDITOR_UPLOAD_PATH = BASE_DIR / "media"
