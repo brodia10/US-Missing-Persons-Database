@@ -1,5 +1,5 @@
 """
-ASGI config for us_missing_persons project.
+ASGI config for usmp project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
