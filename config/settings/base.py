@@ -96,16 +96,12 @@ TEMPLATES = [
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.contrib.gis.db.backends.mysql",
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": config("DB_NAME", "usmp"),
         "USER": config("DB_USER", "usmp"),
         "PASSWORD": config("DB_PASS", "usmp"),
-        "HOST": config("DB_HOST", "0.0.0.0"),
-        "PORT": config("DB_PORT", "3306"),
-        "OPTIONS": {
-            # Tell MySQLdb to connect with 'utf8mb4' character set
-            "charset": "utf8mb4",
-        },
+        "HOST": config("DB_HOST", "localhost"),
+        "PORT": config("DB_PORT", "5432"),
     }
 }
 

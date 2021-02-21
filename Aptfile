@@ -1,6 +1,0 @@
-binutils
-libproj-dev
-gdal-bin
-python3-dev
-libmysqlclient-dev
-default-libmysqlclient-dev

@@ -9,9 +9,8 @@ django-jsonfield==1.4.1
 django-letsencrypt==4.0.0
 flake8==3.8.4
 gunicorn==20.0.4
+psycopg2-binary==2.8.6
 proj==0.2.0
-mysqlclient==2.0.3
-django-mysql==3.11.1
 python-decouple==3.3
 pylint==2.5.3
 pylint-django==2.0.15
