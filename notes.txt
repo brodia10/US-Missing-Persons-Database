@@ -1,0 +1,62 @@
+
+
+Database Schema
+----------------------
+- Should use some Geo data App that already has a good structure
+-- GeoDjango
+
+MVP
+----------------------
+- Submit cases for review
+- Submit changes to a current case for review
+- Case List View
+- Case Detail View
+
+Two public forms:
+----------------------
+1. Submit new case 
+    - Contains all possible things they want to provide things to a case
+2. Provide additonal case info to current case
+    - Pretty much the same for as 1. but already related to an existing case
+
+
+Apps
+1. Core (Django app)
+    - "core" app
+    - Core database relationships and models for USMP DB
+    - Ex. usmp.cases.models.Case, usmp.cases.models.Person, etc
+2. Anonymous User Fronend (Django app using templating system)
+    - "public" app 
+    - Contains the Views (html templating)
+    - Ex. usmp.public.db.models.PublicUser, usmp.public.db.models.DbAccess, etc
+3. Cases API (v1, v2) (Django DRF app)
+    - Adds REST API in front of Cases app.
+    - Also expose for public access to db data thru (with user account keys)
+4. React front
+    - Seperate from Django entirely
+    - Depends on Cases API
+
+INSTALLED_APP = (
+    "usmp.core", // no FE
+    "usmp.public", // FE
+    "usmp.api.v1", // depends usmp.core
+)
+
+Models 
+----------------------
+1. Missing Persons
+    - Age
+    - Name
+    - Photo
+    - Status: Missing, Unsolved Homicide
+    - From City
+
+2. Cases
+    - Missing Persons
+    - Description
+    - National Park
+    - Is 411 Case?
+    - Geolocation data
+    - Went Missing at
+
+3. Users (Admin only Users right now)
