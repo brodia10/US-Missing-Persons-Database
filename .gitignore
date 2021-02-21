@@ -10,3 +10,4 @@ venv
 **/*.sqlite3-journal
 .env
 .pyc
+notes
