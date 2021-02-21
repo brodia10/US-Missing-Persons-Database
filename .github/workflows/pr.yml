@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run Black Code Formatting
         run: black --config ../pyproject.toml -v --check .
-        working-directory: ./us_missing_persons
+        working-directory: ./usmp
       - name: Run Flake8 Linter
         run: flake8 -v .
-        working-directory: ./us_missing_persons
+        working-directory: ./usmp

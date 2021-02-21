@@ -1,5 +1,5 @@
 """
-WSGI config for us_missing_persons project.
+WSGI config for usmp project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
