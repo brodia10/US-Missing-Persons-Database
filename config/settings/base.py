@@ -25,7 +25,7 @@ DEBUG = True
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY", "changeme!")
 
 
 # APP CONFIGURATION
@@ -45,11 +45,6 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     "import_export",
-    "mail_templated",
-    "phonenumber_field",
-    "ckeditor",
-    "multiselectfield",
-    "storages",
     "letsencrypt",
     "auditlog",
 )
@@ -93,6 +88,20 @@ TEMPLATES = [
         },
     },
 ]
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": config("DB_NAME", "usmp"),
+        "USER": config("DB_USER", "usmp"),
+        "PASSWORD": config("DB_PASS", "usmp"),
+        "HOST": config("DB_HOST", "localhost"),
+        "PORT": config("DB_PORT", "5432"),
+    }
+}
 
 # Static file Settings
 # ------------------------------------------------------------------------------
@@ -314,17 +323,3 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-outline-success",
     },
 }
-
-# Ckeditor Configs
-# ------------------------------------------------------------------------------
-
-CKEDITOR_CONFIGS = {
-    "default": {
-        "skin": "moono",
-        "toolbar": "basic",
-        "enterMode": 2,
-    },
-}
-
-# This is the path CKEDITOR will look for media files when uploading via Admin Panel text editor.
-CKEDITOR_UPLOAD_PATH = BASE_DIR / "media"

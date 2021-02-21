@@ -1,8 +1,8 @@
 # Django
 SETTINGS_MODULE = local
 
-serve:
-	python manage.py runserver --SETTINGS_MODULE=${SETTINGS_MODULE}
+serve: startdeps
+	python manage.py runserver --settings=config.settings.${SETTINGS_MODULE}
 
 migrations:
 	python manage.py makemigrations
@@ -19,18 +19,18 @@ super:
 # pip
 
 install:
-	pip3 install -r requirements.txt
+	pip install -r requirements.min.txt
 
-freeze:
-	pip3 freeze > requirements.txt
+freeze: install
+	pip freeze > requirements.txt
 
 # virtual env
 
 newenv:
-	virtualenv myenv -p python3
+	python3 -m venv venv
 
 startenv:
-	source myenv/bin/activate
+	source venv/bin/activate
 
 stopenv:
 	deactivate
@@ -38,7 +38,7 @@ stopenv:
 # Code Formatting - Black
 # Black configuration is in pyproject.toml
 format:
-	black . --config pyproject.toml -v
+	black . --config pyproject.toml
 
 # Linting - Flake8
 # Flake8 configuration is in tox.ini
@@ -47,3 +47,11 @@ lint:
 
 remove_unused:
 	autoflake --remove-all-unused-imports --remove-unused-variables -r -i ./*/*
+
+# Infrastrucutre
+
+startdeps:
+	docker-compose up -d
+
+stopdeps:
+	docker-compose down

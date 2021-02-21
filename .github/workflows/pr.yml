@@ -21,8 +21,6 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Black Code Formatting
-        run: black --config ../pyproject.toml -v --check .
-        working-directory: ./usmp
+        run: black --config pyproject.toml -v --check .
       - name: Run Flake8 Linter
         run: flake8 -v .
-        working-directory: ./usmp
