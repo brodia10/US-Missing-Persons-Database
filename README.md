@@ -20,3 +20,11 @@ make install
 # Before making your final commits / PR, freeze the deps
 make freeze
 ```
+
+### GeoDjango system packages
+
+Django's installation docs:
+https://docs.djangoproject.com/en/3.1/ref/contrib/gis/install/#installation
+
+Some more docs for MacOS install:
+https://docs.djangoproject.com/en/3.1/ref/contrib/gis/install/#macos

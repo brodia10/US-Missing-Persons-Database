@@ -41,12 +41,14 @@ DJANGO_APPS = (
     "jazzmin",
     "django.contrib.admin",
     "django.contrib.admindocs",
+    "django.contrib.gis",
 )
 
 THIRD_PARTY_APPS = (
     "import_export",
     "letsencrypt",
     "auditlog",
+    "django_mysql",
 )
 
 # Apps specific for this project go here.
@@ -94,12 +96,16 @@ TEMPLATES = [
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.contrib.gis.db.backends.mysql",
         "NAME": config("DB_NAME", "usmp"),
         "USER": config("DB_USER", "usmp"),
         "PASSWORD": config("DB_PASS", "usmp"),
-        "HOST": config("DB_HOST", "localhost"),
-        "PORT": config("DB_PORT", "5432"),
+        "HOST": config("DB_HOST", "0.0.0.0"),
+        "PORT": config("DB_PORT", "3306"),
+        "OPTIONS": {
+            # Tell MySQLdb to connect with 'utf8mb4' character set
+            "charset": "utf8mb4",
+        },
     }
 }
 

@@ -12,3 +12,4 @@ venv
 .pyc
 notes
 **/*.icloud
+usmp/core/data/*

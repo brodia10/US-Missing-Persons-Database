@@ -7,6 +7,9 @@ serve: startdeps
 migrations:
 	python manage.py makemigrations
 
+showmigrations:
+	python manage.py showmigrations
+
 migrate:
 	python manage.py migrate
 
@@ -16,7 +19,7 @@ collect:
 super:
 	python manage.py createsuperuser
 
-# pip
+# requirements
 
 install:
 	pip install -r requirements.min.txt
@@ -55,3 +58,17 @@ startdeps:
 
 stopdeps:
 	docker-compose down
+
+# Installing gis system requirements
+
+ifeq ($(OS),Windows_NT)
+    detected_OS := Windows
+else
+    detected_OS := $(shell sh -c 'uname 2>/dev/null || echo Unknown')
+endif
+
+install-gis:
+	@sh install_system_deps.sh $(detected_OS)
+
+load-world-boarders:
+	python manage.py load_world_boarders
