@@ -11,6 +11,8 @@ jobs:
     name: Web App Checks
     runs-on: ubuntu-latest
     steps:
+      - name: Install GEOS, GDAL, PROJ, Spatialite
+        run: sudo apt-get install binutils libproj-dev gdal-bin libsqlite3-mod-spatialite
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Python 3.7
@@ -24,3 +26,5 @@ jobs:
         run: black --config pyproject.toml -v --check .
       - name: Run Flake8 Linter
         run: flake8 -v .
+      - name: Run Tests
+        run: python manage.py test --settings=config.settings.test

@@ -38,6 +38,11 @@ startenv:
 stopenv:
 	deactivate
 
+# Tests
+# Test True
+test:
+	python manage.py test --settings=config.settings.test
+
 # Code Formatting - Black
 # Black configuration is in pyproject.toml
 format:
@@ -72,3 +77,5 @@ install-gis:
 
 load-world-boarders:
 	python manage.py load_world_boarders
+
+

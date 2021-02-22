@@ -18,13 +18,15 @@ RESET='\033[0m'
 # Start script
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo -e "${GREEN}Installing GeoDjango dependencies for ${YELLOW}$OSTYPE..."
-    sudo apt-get install binutils libproj-dev gdal-bin
+    sudo apt-get install binutils libproj-dev gdal-bin libsqlite3-mod-spatialite
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     echo -e "${GREEN}Installing GeoDjango dependencies for ${YELLOW}$OSTYPE..."
     brew install postgresql
     brew install postgis
     brew install gdal
     brew install libgeoip
+    brew install libspatialite
+    brew install spatialite-tools
 else
     echo - e"${RED}ERROR: No GeoDjango installation process for $OSTYPE !!"
     exit 1

@@ -48,7 +48,6 @@ THIRD_PARTY_APPS = (
     "import_export",
     "letsencrypt",
     "auditlog",
-    "django_mysql",
 )
 
 # Apps specific for this project go here.
